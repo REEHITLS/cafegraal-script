@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cafegraal — Script d'appel v8.1</title>
+<style>
+  :root {
+    --bg: #0f172a; --card: #1e293b; --text: #f1f5f9;
+    --accent: #d97706; --accent2: #16a34a; --muted: #94a3b8;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: -apple-system, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg); color: var(--text);
+    line-height: 1.55; font-size: 17px;
+    max-width: 760px; margin: 0 auto; padding: 12px;
+  }
+  h1 { font-size: 20px; padding: 10px 4px 2px; color: var(--accent); }
+  .sub { color: var(--muted); font-size: 13px; padding: 0 4px 12px; }
+  .tabs { display: flex; gap: 6px; position: sticky; top: 0; background: var(--bg); padding: 8px 0; }
+  .tabs label {
+    flex: 1; text-align: center; padding: 12px 4px; border-radius: 10px;
+    background: var(--card); color: var(--muted);
+    font-weight: 600; font-size: 15px; cursor: pointer; user-select: none;
+    border: 2px solid transparent;
+  }
+  input[type="radio"] { display: none; }
+  #tab-script:checked ~ .tabs label[for="tab-script"],
+  #tab-obj:checked ~ .tabs label[for="tab-obj"],
+  #tab-qualif:checked ~ .tabs label[for="tab-qualif"] {
+    background: var(--accent); color: #fff;
+  }
+  .page { display: none; padding: 8px 2px 40px; }
+  #tab-script:checked ~ .pg-script,
+  #tab-obj:checked ~ .pg-obj,
+  #tab-qualif:checked ~ .pg-qualif { display: block; }
+  .block {
+    background: var(--card); border-radius: 12px; padding: 14px; margin: 10px 0;
+  }
+  .block h2 {
+    font-size: 13px; text-transform: uppercase; letter-spacing: .06em;
+    color: var(--accent); margin-bottom: 8px;
+  }
+  .block h2.vert { color: var(--accent2); }
+  .say { font-size: 18px; }
+  .note { color: var(--accent2); font-size: 14px; margin-top: 8px; font-style: italic; }
+  .obj { margin-bottom: 14px; }
+  .obj .q { font-weight: 700; color: var(--accent); }
+  .obj .a { margin-top: 3px; }
+  .alt { color: var(--muted); font-size: 15px; margin-top: 3px; }
+  .alt b { color: var(--text); }
+  .quest { margin-bottom: 12px; font-size: 18px; }
+  .rule { background: #7c2d12; border-radius: 10px; padding: 12px 14px; margin: 10px 0; font-weight: 600; }
+  @media (max-width: 480px) { body { font-size: 16px; } .say, .quest { font-size: 17px; } }
+</style>
+</head>
+<body>
+
+<input type="radio" name="tab" id="tab-script" checked>
+<input type="radio" name="tab" id="tab-obj">
+<input type="radio" name="tab" id="tab-qualif">
+
+<h1>☕ Cafegraal — Script d'appel</h1>
+<div class="sub">v8.1 · Objectif : le RDV 15 min · Jamais vendre · Deux dates, puis silence 6 s</div>
+
+<nav class="tabs">
+  <label for="tab-script">Script</label>
+  <label for="tab-obj">Objections</label>
+  <label for="tab-qualif">Qualif</label>
+</nav>
+
+<!-- ================= SCRIPT ================= -->
+<div class="page pg-script">
+  <div class="block">
+    <h2>Accroche — 13 s, puis silence</h2>
+    <p class="say">« Bonjour {{firstName}}, Sofiane de Cafegraal. Merci de prendre l'appel — je vous ai écrit il y a quelques jours, l'avez-vous reçu ? » <i>(micro-pause)</i> « Je vais être transparent : c'est de la prospection. Vous m'accordez une petite minute ? »</p>
+    <p class="alt"><b>S'il dit « oui » :</b> « Parfait. Je vais être transparent : c'est de la prospection. »</p>
+    <p class="alt"><b>S'il dit « non » :</b> « Pas de souci, il a dû se perdre — c'est d'ailleurs pour ça que je préfère vous appeler. »</p>
+    <p class="alt"><b>S'il dit « je ne sais pas » :</b> « Pas de problème, je vous résume en une minute, ce sera plus simple. »</p>
+  </div>
+  <div class="block">
+    <h2>Intérêt</h2>
+    <p class="say">« Je suis cofondateur de Cafegraal, marque de capsules biodégradables compatibles Nespresso. Ça fait 6 ans que j'accompagne des hôtels comme le vôtre.</p>
+    <p class="say">Je vous téléphone parce que les classements hôteliers accordent désormais une place centrale au développement durable — et les capsules en chambre, en aluminium ou en plastique, ont de moins en moins bonne presse. Nous aidons les hôtels à aller dans le sens de ces règles. »</p>
+  </div>
+  <div class="block">
+    <h2>Désir</h2>
+    <p class="say">« En passant à une capsule biodégradable, vous êtes déjà dans le sens du classement, sans rien changer à votre service. C'est ce qu'on fait déjà avec des hôtels du groupe Accor ou de luxe comme la Maison Sibuet : ils valorisent leur engagement écologique — et surtout, sur le sujet tout aussi central des coûts, certains économisent des milliers d'euros par an. »</p>
+  </div>
+  <div class="block">
+    <h2 class="vert">Action — la question magique</h2>
+    <p class="say">« J'aurais voulu vous proposer la même chose pour votre hôtel, c'est pour ça que je vous appelle. On se voit 15 minutes ? Mardi ou jeudi ? »</p>
+    <p class="note">Puis : silence. Jusqu'à 6 secondes. Celui qui parle en premier a perdu.</p>
+  </div>
+  <div class="block">
+    <h2>Réserve — si « comment ça, le classement ? »</h2>
+    <p class="say">« Depuis la réforme du classement hôtelier en 2022, les critères de développement durable sont passés de 13 à 27, dont 12 obligatoires — notamment sur les déchets : réduction des déchets et tri à disposition de la clientèle. La capsule en chambre entre directement dans ce chapitre. »</p>
+  </div>
+  <div class="block">
+    <h2>Réserve — si « ça représente combien ? » / « un exemple ? »</h2>
+    <p class="say">« La Maison Sibuet, par exemple : leur capsule coûtait 0,37 € avant. Avec nous, elle est à 0,30 €. Sur leurs 70 000 capsules par an, ça fait près de 5 000 € d'économisés — et leur capsule est biodégradable. »</p>
+  </div>
+  <div class="rule">Refus net → tag « ne plus relancer », sortie de séquence. RDV → tag « Ok Cold Call » + push HubSpot.</div>
+</div>
+
+<!-- ================= OBJECTIONS ================= -->
+<div class="page pg-obj">
+  <div class="block obj"><p class="q">« Je n'ai pas le temps »</p>
+    <p class="a">« Je comprends, je vous appelle au milieu d'une journée. C'est justement pour ça que je propose 15 minutes, pas plus — et à votre convenance. Mardi ou jeudi ? »</p></div>
+
+  <div class="block obj"><p class="q">« Envoyez-moi un email »</p>
+    <p class="a">« Avec plaisir — mais dites-moi précisément ce que vous voulez voir dedans. Parce que si je vous envoie une plaquette générique, elle finira au fond de votre boîte, et on sera tous les deux déçus. »</p>
+    <p class="alt"><b>S'il précise :</b> « Parfait. Tout ça dépend de vos volumes et de votre installation — c'est ce qu'on cadre en 15 minutes. On se voit, je vous prépare le mail avec VOS chiffres. Mardi ou jeudi ? »</p>
+    <p class="alt"><b>S'il bredouille :</b> « Je vais être honnête : ce que je vous enverrai ne vous dira pas si ça marche pour votre hôtel. Ce qui le dira, c'est 15 minutes ensemble. Jeudi à 10h ou vendredi à 14h ? »</p>
+    <p class="alt"><b>Refus malgré tout :</b> « OK, je vous envoie ça. Mais je vous appelle jeudi pour en parler — c'est plus simple que dix mails. Deal ? »</p></div>
+
+  <div class="block obj"><p class="q">« On a déjà un fournisseur »</p>
+    <p class="a">« C'est normal, et c'est même souvent comme ça qu'on commence avec nos hôtels. Presque tous pensaient que leur solution était déjà réglée — jusqu'à ce qu'on chiffre ce que la capsule en aluminium leur coûte vraiment, classement et image comprises. En 15 minutes je vous montre, et vous tranchez ensuite. Mardi ou jeudi ? »</p></div>
+
+  <div class="block obj"><p class="q">« Ça ne m'intéresse pas »</p>
+    <p class="a">« Je comprends. Sans vouloir insister : depuis la réforme du classement, les hôtels qui nous disent ça changent souvent d'avis quand ils voient que la capsule en chambre touche un critère obligatoire de leurs étoiles — et qu'ils peuvent économiser en plus. Ça se vérifie en 15 minutes, sans engagement. Jeudi ou mardi prochain ? »</p></div>
+
+  <div class="block obj"><p class="q">« C'est trop cher »</p>
+    <p class="a">« C'est la première chose qu'on se dit — et c'est justement pour ça que je préfère vous montrer sur vos chiffres : la plupart de nos hôtels économisent — pour certains, plusieurs milliers d'euros par an. Je ne vais pas vous donner de chiffre au téléphone parce que ça dépend de vos volumes. C'est ce qu'on chiffre ensemble en 15 minutes, sur VOS nombres. Mardi ou jeudi ? »</p></div>
+
+  <div class="block obj"><p class="q">« Le biodégradable, c'est du greenwashing »</p>
+    <p class="a">« Vous avez raison de vous méfier, il y a beaucoup d'allégations dans ce secteur. Nos capsules sont biodégradables et certifiées compostables "home" — elles partent au compost, sans filière industrielle. Je vous montre les certifications en rendez-vous, 15 minutes. Mardi ou jeudi ? »</p></div>
+
+  <div class="block obj"><p class="q">« Mes clients s'en fichent »</p>
+    <p class="a">« Je comprends — c'est ce que beaucoup d'hôteliers se disent. Ce qu'on observe, c'est que le classement, lui, s'en soucie : 12 critères verts sont désormais obligatoires, dont les déchets en chambre. Vos clients voient la capsule chaque matin, et vos étoiles regardent ce que vous en faites. En 15 minutes je vous montre comment on règle les deux. Mardi ou jeudi ? »</p></div>
+
+  <div class="block obj"><p class="q">« Je dois en parler à mon associé »</p>
+    <p class="a">« Très bien, c'est même mieux — vous serez deux à trancher. Proposez-lui directement le créneau : 15 minutes à deux, et vous aurez tous les éléments chiffrés pour décider. Mardi ou jeudi ? »</p></div>
+
+  <div class="block obj"><p class="q">« Rappelez-moi plus tard »</p>
+    <p class="a">« Volontiers. Pour ne pas vous appeler au hasard : fixons maintenant un créneau précis, même dans 2-3 semaines. Quel jour vous conviendrait ? »</p></div>
+
+  <div class="block obj"><p class="q">« On n'utilise pas de capsules »</p>
+    <p class="a">« Pas de problème — du coup ce n'est pas pour vous, et je ne vais pas vous faire perdre votre temps. Par curiosité : votre café se fait comment aujourd'hui ? … »</p></div>
+
+  <div class="block obj"><p class="q">« D'où vient mon numéro ? »</p>
+    <p class="a">« Bonne question — je vous ai écrit il y a quelques jours sur votre adresse professionnelle, c'est de là que je joins vos coordonnées. Je téléphone aux hôtels comme le vôtre, c'est en lien direct. Vous m'accordez ma petite minute ? »</p></div>
+
+  <div class="block obj"><p class="q">« On n'a pas d'étoiles / on n'est pas classé »</p>
+    <p class="a">« C'est plus courant qu'on le croit, et c'est justement là que ça devient intéressant : environ 80 % des hôtels en France sont classés, et le classement reste le repère n°1 des clients — surtout sur les OTA et avec la clientèle étrangère. Même sans étoiles, vos clients voient la capsule en chambre tous les jours. La question n'est pas le classement, c'est ce qu'ils retiennent de votre établissement. 15 minutes pour voir ce que ça changerait chez vous ? Mardi ou jeudi ? »</p></div>
+
+  <div class="block obj"><p class="q">« Gatekeeper — standard / réception » <i>(le correspondant n'est pas la décision)</i></p>
+    <p class="a">« Bonjour — je cherche à joindre {{firstName}} [Nom], c'est Sofiane de Cafegraal, au sujet des capsules en chambre pour l'hôtel. Vous savez s'il/elle est disponible deux minutes, ou c'est vous qui gérez ça ? »</p>
+    <p class="alt"><b>Si c'est le/la décideur(se) :</b> reprendre l'accroche habituelle, sans omettre la micro-pause.</p>
+    <p class="alt"><b>Si renvoi :</b> noter le moment de rappel indiqué dans le CRM et dans la tâche lemlist.</p></div>
+</div>
+
+<!-- ================= QUALIF ================= -->
+<div class="page pg-qualif">
+  <div class="rule">MAX 3 questions par appel. 70/30 : le prospect parle.</div>
+  <div class="block">
+    <p class="quest">1. « Aujourd'hui, votre café, vous le servez comment ? Capsules, grains, en room, en salle ? »</p>
+    <p class="quest">2. « Côté coûts, vous avez une idée de ce que vous dépensez en capsules sur l'année ? Même une fourchette. »</p>
+    <p class="quest">3. « Si on se rend compte ensemble que ça vaut le coup, ce serait vous qui trancheriez, ou ça se décide à plusieurs ? »</p>
+    <p class="quest"><i>(Si intérêt étoiles)</i> « Vous avez passé un classement récemment, ou ça approche ? »</p>
+    <p class="quest"><i>(Si ça traîne)</i> « Plutôt une amélioration en cours d'année, ou ça se pilote au moment du budget ? »</p>
+  </div>
+  <div class="block">
+    <h2 class="vert">Après chaque réponse</h2>
+    <p class="say">« OK. C'est exactement le genre de chose qu'on regarde ensemble en 15 minutes, sur vos chiffres. Mardi ou jeudi ? »</p>
+  </div>
+  <div class="rule">Après l'appel : 30 s CRM — résonance, objection, réponses qualif, action.</div>
+</div>
+
+</body>
+</html>
