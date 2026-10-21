@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cafegraal — Script d'appel v8.5</title>
+<title>Cafegraal — Script d'appel v8.6</title>
 <style>
   :root {
     --bg: #0f172a; --card: #1e293b; --text: #f1f5f9;
@@ -62,27 +62,26 @@
 <input type="radio" name="tab" id="tab-qualif">
 
 <h1>☕ Cafegraal — Script d'appel</h1>
-<div class="sub">v8.5 · Objectif : le RDV 15 min · Jamais vendre · Deux dates, puis silence 6 s</div>
+<div class="sub">v8.6 · Objectif : le RDV 15 min · Jamais vendre · Deux dates, puis silence 6 s</div>
 
 <nav class="tabs">
   <label for="tab-script">Script</label>
   <label for="tab-obj">Objections</label>
-  <label for="tab-qualif">Qualif</label>
+  <label for="tab-qualif">Qualification</label>
 </nav>
 
 <!-- ================= SCRIPT ================= -->
 <div class="page pg-script">
   <div class="block">
-    <h2>Accroche — 13 s, puis silence</h2>
-    <p class="say">« Bonjour {{firstName}}, Sofiane de Cafegraal. Merci de prendre l'appel — je vous ai envoyé un mail, l'avez-vous reçu ? » <i>(micro-pause)</i> « Je vais être transparent : c'est de la prospection. Vous m'accordez une petite minute ? »</p>
-    <p class="alt"><b>S'il dit « oui » :</b> « Parfait. Je vais être transparent : c'est de la prospection. »</p>
-    <p class="alt"><b>S'il dit « non » :</b> « Pas de souci, il a dû se perdre — c'est d'ailleurs pour ça que je préfère vous appeler. »</p>
-    <p class="alt"><b>S'il dit « je ne sais pas » :</b> « Pas de problème, je vous résume en une minute, ce sera plus simple. »</p>
+    <h2>Accroche — 10 s, puis silence</h2>
+    <p class="say">« Bonjour {{firstName}}, Sofiane de Cafegraal. Je vous appelle pour prendre rendez-vous — vous m'accordez une petite minute ? »</p>
+    <p class="alt"><b>Variante (si mail envoyé juste avant) :</b> « Bonjour {{firstName}}, Sofiane de Cafegraal — je vous ai envoyé un mail, l'avez-vous reçu ? » <i>(micro-pause)</i> « Peu importe : je vous appelle pour prendre rendez-vous, vous m'accordez une petite minute ? »</p>
+    <p class="alt"><b>Refus ou hésitation :</b> « Pas de souci, je vous résume en une minute, ce sera plus simple. »</p>
   </div>
   <div class="block">
     <h2>Intérêt</h2>
-    <p class="say">« Je suis cofondateur de Cafegraal, marque de capsules biodégradables compatibles Nespresso. Ça fait 6 ans que j'accompagne des hôtels comme le vôtre.</p>
-    <p class="say">Nous constatons que les classements hôteliers accordent beaucoup d'importance à l'écologie — et les capsules en aluminium en chambre ne vont pas dans le bon sens. Nous aidons les hôtels à améliorer leur image sur ce point. »</p>
+    <p class="say">« Je travaille avec des hôtels indépendants 3 et 4 étoiles, comme la Maison Sibuet, pour passer au café biodégradable sans changer leur machine ni le rituel en chambre.</p>
+    <p class="say">Et nous constatons que les classements hôteliers accordent beaucoup d'importance à l'écologie — alors que la capsule en aluminium en chambre ne va pas dans le bon sens. Nous aidons les hôtels à aligner les deux. »</p>
   </div>
   <div class="block">
     <h2>Désir</h2>
@@ -99,7 +98,7 @@
   </div>
   <div class="block">
     <h2>Réserve — si « ça représente combien ? » / « un exemple ? »</h2>
-    <p class="say">« La Maison Sibuet, par exemple : leur capsule coûtait 0,37 € avant. Avec nous, elle est à 0,30 €. Sur leurs 70 000 capsules par an, ça fait près de 5 000 € d'économisés — et leur capsule est biodégradable. »</p>
+    <p class="say">« La Maison Sibuet, par exemple : leur capsule coûtait 0,37 € avant. Avec nous, elle est à 0,329 €. Sur leurs 70 000 capsules par an, ça fait environ 2 900 € d'économisés à l'échelle du groupe — et leur capsule est biodégradable. »</p>
   </div>
   <div class="rule">Refus net → tag « ne plus relancer », sortie de séquence. RDV → tag « Ok Cold Call » + push HubSpot.</div>
 </div>
@@ -140,7 +139,7 @@
     <p class="a">« Pas de problème — du coup ce n'est pas pour vous, et je ne vais pas vous faire perdre votre temps. Par curiosité : votre café se fait comment aujourd'hui ? … »</p></div>
 
   <div class="block obj"><p class="q">« D'où vient mon numéro ? »</p>
-    <p class="a">« Bonne question — je vous ai écrit il y a quelques jours sur votre adresse professionnelle, c'est de là que je joins vos coordonnées. Je téléphone aux hôtels comme le vôtre, c'est en lien direct. Vous m'accordez ma petite minute ? »</p></div>
+    <p class="a">« Bonne question. Votre numéro vient d'une base de données conforme au RGPD. Il arrive qu'on y trouve des numéros personnels — si c'est votre cas, dites-le-moi et je le fais retirer immédiatement. On peut aussi continuer sur votre numéro professionnel, comme vous préférez. Vous m'accordez ma petite minute ? »</p></div>
 
   <div class="block obj"><p class="q">« On n'a pas d'étoiles / on n'est pas classé »</p>
     <p class="a">« C'est plus courant qu'on le croit, et c'est justement là que ça devient intéressant : environ 80 % des hôtels en France sont classés, et le classement reste le repère n°1 des clients — surtout sur les OTA et avec la clientèle étrangère. Même sans étoiles, vos clients voient la capsule en chambre tous les jours. La question n'est pas le classement, c'est ce qu'ils retiennent de votre établissement. 15 minutes pour voir ce que ça changerait chez vous ? Mardi ou jeudi ? »</p></div>
@@ -153,13 +152,12 @@
 
 <!-- ================= QUALIF ================= -->
 <div class="page pg-qualif">
-  <div class="rule">MAX 3 questions par appel. 70/30 : le prospect parle.</div>
+  <div class="rule">Les 4 questions de la visio. En appel : retenir les 2-3 plus pertinentes. 70/30 : le prospect parle.</div>
   <div class="block">
-    <p class="quest">1. « Aujourd'hui, votre café, vous le servez comment ? Capsules, grains, en room, en salle ? »</p>
-    <p class="quest">2. « Côté coûts, vous avez une idée de ce que vous dépensez en capsules sur l'année ? Même une fourchette. »</p>
-    <p class="quest">3. « Si on se rend compte ensemble que ça vaut le coup, ce serait vous qui trancheriez, ou ça se décide à plusieurs ? »</p>
-    <p class="quest"><i>(Si intérêt étoiles)</i> « Vous avez passé un classement récemment, ou ça approche ? »</p>
-    <p class="quest"><i>(Si ça traîne)</i> « Plutôt une amélioration en cours d'année, ou ça se pilote au moment du budget ? »</p>
+    <p class="quest">1. « Comment fonctionne aujourd'hui le café en chambre sur vos hôtels ? Fournisseur, contrat — et combien de capsules par plateau ? »</p>
+    <p class="quest">2. « Qu'est-ce que vous aimeriez améliorer aujourd'hui sur le café en chambre — coût, logistique, temps d'équipe ? »</p>
+    <p class="quest">3. « Côté équipes : qui s'occupe du réapprovisionnement, et comment ça se passe au quotidien ? »</p>
+    <p class="quest">4. « Avez-vous déjà entrepris des actions écologiques dans l'hôtel — et lesquelles ? »</p>
   </div>
   <div class="block">
     <h2 class="vert">Après chaque réponse</h2>
