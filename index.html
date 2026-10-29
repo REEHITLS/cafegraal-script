@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Cafegraal — Script d'appel v8.7</title>
+<title>Cafegraal — Script d'appel v8.8</title>
 <style>
   :root {
     --bg: #0f172a; --card: #1e293b; --text: #f1f5f9;
@@ -62,7 +62,7 @@
 <input type="radio" name="tab" id="tab-qualif">
 
 <h1>☕ Cafegraal — Script d'appel</h1>
-<div class="sub">v8.7 · Objectif : le RDV 15 min · Jamais vendre · Deux dates, puis silence 6 s</div>
+<div class="sub">v8.8 · Script rétabli v8.1 · Objectif : le RDV 15 min · Jamais vendre · Deux dates, puis silence 6 s</div>
 
 <nav class="tabs">
   <label for="tab-script">Script</label>
@@ -73,23 +73,24 @@
 <!-- ================= SCRIPT ================= -->
 <div class="page pg-script">
   <div class="block">
-    <h2>Accroche — 10 s, puis silence</h2>
-    <p class="say">« Bonjour {{firstName}}, Sofiane de Cafegraal. Je vous appelle pour prendre rendez-vous — vous m'accordez une petite minute ? »</p>
-    <p class="alt"><b>Variante (si mail envoyé juste avant) :</b> « Bonjour {{firstName}}, Sofiane de Cafegraal — je vous ai envoyé un mail, l'avez-vous reçu ? » <i>(micro-pause)</i> « Peu importe : je vous appelle pour prendre rendez-vous, vous m'accordez une petite minute ? »</p>
-    <p class="alt"><b>Refus ou hésitation :</b> « Pas de souci, je vous résume en une minute, ce sera plus simple. »</p>
+    <h2>Accroche — 13 s, puis silence</h2>
+    <p class="say">« Bonjour {{firstName}}, Sofiane de Cafegraal. Merci de prendre l'appel — je vous ai écrit il y a quelques jours, l'avez-vous reçu ? » <i>(micro-pause)</i> « Je vais être transparent : c'est de la prospection. Vous m'accordez une petite minute ? »</p>
+    <p class="alt"><b>S'il dit « oui » :</b> « Parfait. Je vais être transparent : c'est de la prospection. »</p>
+    <p class="alt"><b>S'il dit « non » :</b> « Pas de souci, il a dû se perdre — c'est d'ailleurs pour ça que je préfère vous appeler. »</p>
+    <p class="alt"><b>S'il dit « je ne sais pas » :</b> « Pas de problème, je vous résume en une minute, ce sera plus simple. »</p>
   </div>
   <div class="block">
     <h2>Intérêt</h2>
-    <p class="say">« Je travaille avec des hôtels indépendants 3 et 4 étoiles, comme la Maison Sibuet, pour passer au café biodégradable sans changer leur machine ni le rituel en chambre.</p>
-    <p class="say">Et nous constatons que les classements hôteliers accordent beaucoup d'importance à l'écologie — alors que la capsule en aluminium en chambre ne va pas dans le bon sens. Nous aidons les hôtels à aligner les deux. »</p>
+    <p class="say">« Je suis cofondateur de Cafegraal, marque de capsules biodégradables compatibles Nespresso. Ça fait 6 ans que j'accompagne des hôtels comme le vôtre.</p>
+    <p class="say">Je vous téléphone parce que les classements hôteliers accordent désormais une place centrale au développement durable — et les capsules en chambre, en aluminium ou en plastique, ont de moins en moins bonne presse. Nous aidons les hôtels à aller dans le sens de ces règles. »</p>
   </div>
   <div class="block">
     <h2>Désir</h2>
-    <p class="say">« En passant à une capsule biodégradable, vous améliorez votre image et vous valorisez votre engagement. C'est ce que nous avons fait avec des hôtels Accor ou de luxe comme la maison SIBUET. Ils valorisent leur engagement écologique et surtout, ils économisent pour certains des milliers d'euros par an. »</p>
+    <p class="say">« En passant à une capsule biodégradable, vous êtes déjà dans le sens du classement, sans rien changer à votre service. C'est ce qu'on fait déjà avec des hôtels du groupe Accor ou de luxe comme la Maison Sibuet : ils valorisent leur engagement écologique — et surtout, sur le sujet tout aussi central des coûts, certains économisent des milliers d'euros par an. »</p>
   </div>
   <div class="block">
     <h2 class="vert">Action — la question magique</h2>
-    <p class="say">« Est-ce que vous aimeriez voir comment nous pourrions faire la même chose avec votre hôtel ? 15 minutes lors d'une visio — mardi ou jeudi ? »</p>
+    <p class="say">« J'aurais voulu vous proposer la même chose pour votre hôtel, c'est pour ça que je vous appelle. On se voit 15 minutes ? Mardi ou jeudi ? »</p>
     <p class="note">Puis : silence. Jusqu'à 6 secondes. Celui qui parle en premier a perdu.</p>
   </div>
   <div class="block">
